@@ -1,0 +1,21 @@
+[
+  {
+    "_id": "bc89285d-2c6a-4a1b-9ef3-a2dc609a97e3",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:8000/",
+    "url": "http://aduan.kecgajahmungkur.semarangkota.go.id/api/comment/store",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-05-04T15:15:06.786Z",
+    "modified": "2023-05-07T07:06:59.668Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"sosmed\": \"instagram\",\n  \"username\": \"mbakitasmg\",\n  \"comments\": [\n    {\n      \"url\": \"https://www.instagram.com/p/Cr5mvxZg4fp/\",\n      \"username\": \"donowaatudu\",\n      \"comment\": \"Bu, mbo tolong bu jangan update cm peresmian2 acara terus tp jg update progress kota semarang mau dibawa ke arah mana.. Atau kl ada bbrp proyek besar mbo d update selesainya kpn kira2 biar kt lbh legowo kl macet misal galian pipa dkt hanoman dan selurusan kalibanteng. Maaf tugas ibu berat bgt soalnya Pak Hendar dulu begitu, masyarakat sudah dimanja dengan informasi yang tepat dan cepat dr walikotanya. Kl info formal sudah terupdate, br tambah lucu2an selingan boleh lah..\",\n      \"datetime\": \"2023-05-06T18:38:24.000Z\"\n    }\n  ]\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]
