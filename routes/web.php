@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PlaygroundController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('base');
+    return redirect('dashboard');
 });
 
-Route::get('/login', function () {
-    return view('pages/login');
-});
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/auth', [AuthController::class, 'auth']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+
+Route::get('/playground', [PlaygroundController::class, 'index']);
