@@ -4,13 +4,13 @@
     @include('layouts.head')
 </head>
 
-<body>
+<body class="h-full">
 
-    <header class="row">
+    {{-- <header class="row">
         @include('layouts.header')
-    </header>
+    </header> --}}
 
-    <div id="main" class="row min-h-screen">
+    <div id="main" class="min-h-screen row">
         @yield('content')
     </div>
 

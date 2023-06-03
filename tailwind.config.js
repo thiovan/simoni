@@ -13,8 +13,13 @@ module.exports = {
             },
             backgroundImage: {
                 default: "url('/images/bg-default.webp')",
+                panel: "url('/images/bg-panel.webp')",
+            },
+            colors: {
+                sidebar: "#F71616",
+                "sidebar-alt": "#D60707",
             },
         },
     },
-    plugins: [],
+    plugins: [require("@tailwindcss/forms")],
 };
