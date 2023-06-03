@@ -22,6 +22,9 @@ Route::get('/', function () {
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/auth', [AuthController::class, 'auth']);
+
+Route::get('/logout', [AuthController::class, 'logout']);
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
 Route::get('/playground', [PlaygroundController::class, 'index']);
