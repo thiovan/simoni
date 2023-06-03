@@ -1,7 +1,9 @@
-require('./bootstrap');
+require("./bootstrap");
 
-import Alpine from 'alpinejs'
- 
-window.Alpine = Alpine
- 
-Alpine.start()
+import Alpine from "alpinejs";
+import Chart from "chart.js/auto";
+
+window.Alpine = Alpine;
+Alpine.start();
+
+window.Chart = Chart;

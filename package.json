@@ -10,6 +10,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@tailwindcss/forms": "^0.5.3",
         "autoprefixer": "^10.4.14",
         "axios": "^0.25",
         "browser-sync": "^2.29.3",
@@ -20,6 +21,7 @@
         "tailwindcss": "^3.3.2"
     },
     "dependencies": {
-        "alpinejs": "^3.12.2"
+        "alpinejs": "^3.12.2",
+        "chart.js": "^4.3.0"
     }
 }

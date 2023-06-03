@@ -25,8 +25,8 @@
         </div>
         <div class="flex items-center ml-4 md:ml-6">
             <!-- Profile dropdown -->
-            <div x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()"
-                @click.away="onClickAway($event)" class="relative ml-3">
+            <div x-data @keydown.escape.stop="open = false; focusButton()" @click.away="onClickAway($event)"
+                class="relative ml-3">
                 <div>
                     <button type="button"
                         class="flex items-center max-w-xs text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -48,27 +48,15 @@
                     x-transition:leave-start="transform opacity-100 scale-100"
                     x-transition:leave-end="transform opacity-0 scale-95"
                     class="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                    x-ref="menu-items"
-                    x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical"
-                    aria-labelledby="user-menu-button" tabindex="-1" @keydown.arrow-up.prevent="onArrowUp()"
-                    @keydown.arrow-down.prevent="onArrowDown()" @keydown.tab="open = false"
-                    @keydown.enter.prevent="open = false; focusButton()"
+                    x-ref="menu-items" role="menu"
+                    aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
+                    @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()"
+                    @keydown.tab="open = false" @keydown.enter.prevent="open = false; focusButton()"
                     @keyup.space.prevent="open = false; focusButton()" style="display: none;">
 
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" x-state:on="Active"
-                        x-state:off="Not Active" :class="{ 'bg-gray-100': activeIndex === 0 }" role="menuitem"
-                        tabindex="-1" id="user-menu-item-0" @mouseenter="activeIndex = 0"
-                        @mouseleave="activeIndex = -1" @click="open = false; focusButton()">Your Profile</a>
 
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700"
-                        :class="{ 'bg-gray-100': activeIndex === 1 }" role="menuitem" tabindex="-1"
-                        id="user-menu-item-1" @mouseenter="activeIndex = 1" @mouseleave="activeIndex = -1"
-                        @click="open = false; focusButton()">Settings</a>
-
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700"
-                        :class="{ 'bg-gray-100': activeIndex === 2 }" role="menuitem" tabindex="-1"
-                        id="user-menu-item-2" @mouseenter="activeIndex = 2" @mouseleave="activeIndex = -1"
-                        @click="open = false; focusButton()">Sign out</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                        id="user-menu-item-2">Sign out</a>
 
                 </div>
 
