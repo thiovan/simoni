@@ -25,6 +25,9 @@ Route::post('/auth', [AuthController::class, 'auth']);
 
 Route::get('/logout', [AuthController::class, 'logout']);
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+Route::middleware(['auth'])->group(function () { 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/report', [DashboardController::class, 'report'])->name('report');
+});
 
 Route::get('/playground', [PlaygroundController::class, 'index']);

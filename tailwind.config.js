@@ -18,7 +18,9 @@ module.exports = {
             colors: {
                 sidebar: "#F71616",
                 "sidebar-alt": "#D60707",
-                "panel-chart": "#070726"
+                "panel-chart": "#070726",
+                "panel-title": "#DB282E",
+                "panel-type": "#D91111"
             },
         },
     },

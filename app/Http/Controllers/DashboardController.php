@@ -71,4 +71,11 @@ class DashboardController extends Controller
             "categoryTotal" => $categoryTotal
         ]);
     }
+
+    public function report()
+    {
+        $comments = Comment::paginate(10);
+
+        return view("pages.dashboard.report", compact('comments'));
+    }
 }

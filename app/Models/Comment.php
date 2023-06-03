@@ -13,4 +13,9 @@ class Comment extends Model
     {
         return $this->hasOne(Type::class, 'id', 'type_id');
     }
+
+    public function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
 }
