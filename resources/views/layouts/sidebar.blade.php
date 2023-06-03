@@ -42,14 +42,14 @@
                 <nav class="grid grid-cols-2 px-2 gap-x-3 gap-y-8">
 
                     <div class="hvr-pulse-shrink">
-                        <a href="#"
-                            class="flex items-center justify-center px-2 py-2 bg-red-700 rounded-md group">
+                        <a href="dashboard"
+                            class="flex items-center justify-center px-2 py-2 rounded-md group {{ Route::currentRouteName() == 'dashboard' ? 'bg-red-700' : '' }}">
                             <img class="w-16 drop-shadow" src="{{ asset('icons/home.svg') }}">
                         </a>
                     </div>
 
-                    <a href="#"
-                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
+                    <a href="report"
+                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700 {{ Route::currentRouteName() == 'report' ? 'bg-red-700' : '' }}">
                         <img class="w-16 drop-shadow" src="{{ asset('icons/envelop.svg') }}">
                     </a>
 

@@ -74,7 +74,7 @@ class DashboardController extends Controller
 
     public function report()
     {
-        $comments = Comment::paginate(10);
+        $comments = Comment::paginate(2);
 
         return view("pages.dashboard.report", compact('comments'));
     }
