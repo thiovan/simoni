@@ -1,6 +1,6 @@
-<div class="sticky top-0 z-10 flex flex-shrink-0 h-16 border-b border-gray-200 bg-sidebar">
+<div class="sticky top-0 z-10 flex flex-shrink-0 h-16 bg-sidebar">
     <button type="button"
-        class="px-4 text-gray-500 border-r border-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+        class="px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
         @click="open = true">
         <span class="sr-only">Open sidebar</span>
         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

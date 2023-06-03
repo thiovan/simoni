@@ -5,12 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Type extends Model
 {
     use HasFactory;
-
-    public function type()
-    {
-        return $this->hasOne(Type::class, 'id', 'type_id');
-    }
 }

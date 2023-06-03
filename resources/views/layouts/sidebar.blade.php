@@ -7,7 +7,7 @@
 
 
     <div class="fixed inset-0 z-40 flex">
-        
+
         <div x-show="open" x-transition:enter="transition ease-in-out duration-300 transform"
             x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
             x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0"
@@ -20,7 +20,7 @@
                 x-transition:enter-end="opacity-100" x-transition:leave="ease-in-out duration-300"
                 x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
                 class="absolute top-0 right-0 pt-2 -mr-12">
-                
+
                 <button type="button"
                     class="flex items-center justify-center w-10 h-10 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                     @click="open = false">
@@ -41,33 +41,31 @@
             <div class="flex-1 h-0 p-2 mt-10 overflow-y-auto">
                 <nav class="grid grid-cols-2 px-2 gap-x-3 gap-y-8">
 
-                    <a href="#" class="flex items-center justify-center px-2 py-2 bg-red-700 rounded-md group">
+                    <div class="hvr-pulse-shrink">
+                        <a href="#"
+                            class="flex items-center justify-center px-2 py-2 bg-red-700 rounded-md group">
+                            <img class="w-16 drop-shadow" src="{{ asset('icons/home.svg') }}">
+                        </a>
+                    </div>
 
-                        <img class="w-16" src="{{ asset('icons/home.svg') }}">
+                    <a href="#"
+                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
+                        <img class="w-16 drop-shadow" src="{{ asset('icons/envelop.svg') }}">
                     </a>
 
                     <a href="#"
                         class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
-
-                        <img class="w-16" src="{{ asset('icons/envelop.svg') }}">
+                        <img class="w-16 drop-shadow" src="{{ asset('icons/gps.svg') }}">
                     </a>
 
                     <a href="#"
                         class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
-
-                        <img class="w-16" src="{{ asset('icons/gps.svg') }}">
+                        <img class="w-16 drop-shadow" src="{{ asset('icons/checklist.svg') }}">
                     </a>
 
                     <a href="#"
                         class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
-
-                        <img class="w-16" src="{{ asset('icons/checklist.svg') }}">
-                    </a>
-
-                    <a href="#"
-                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
-
-                        <img class="w-16" src="{{ asset('icons/tools.svg') }}">
+                        <img class="w-16 drop-shadow" src="{{ asset('icons/tools.svg') }}">
                     </a>
 
                 </nav>
@@ -94,30 +92,39 @@
         <div class="flex flex-col flex-grow p-2 mt-10">
             <nav class="grid grid-cols-2 px-2 pb-4 gap-x-3 gap-y-8">
 
-                <a href="#" class="flex items-center justify-center px-2 py-2 bg-red-700 rounded-md group">
+                <div class="hvr-pulse-shrink">
+                    <a href="#" class="flex items-center justify-center px-2 py-2 bg-red-700 rounded-md group">
+                        <img class="w-16 drop-shadow" src="{{ asset('icons/home.svg') }}">
+                    </a>
+                </div>
 
-                    <img class="w-16" src="{{ asset('icons/home.svg') }}">
-                </a>
+                <div class="hvr-pulse-shrink">
+                    <a href="#"
+                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
+                        <img class="w-16 drop-shadow" src="{{ asset('icons/envelop.svg') }}">
+                    </a>
+                </div>
 
-                <a href="#" class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
+                <div class="hvr-pulse-shrink">
+                    <a href="#"
+                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
+                        <img class="w-16 drop-shadow" src="{{ asset('icons/gps.svg') }}">
+                    </a>
+                </div>
 
-                    <img class="w-16" src="{{ asset('icons/envelop.svg') }}">
-                </a>
+                <div class="hvr-pulse-shrink">
+                    <a href="#"
+                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
+                        <img class="w-16 drop-shadow" src="{{ asset('icons/checklist.svg') }}">
+                    </a>
+                </div>
 
-                <a href="#" class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
-
-                    <img class="w-16" src="{{ asset('icons/gps.svg') }}">
-                </a>
-
-                <a href="#" class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
-
-                    <img class="w-16" src="{{ asset('icons/checklist.svg') }}">
-                </a>
-
-                <a href="#" class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
-
-                    <img class="w-16" src="{{ asset('icons/tools.svg') }}">
-                </a>
+                <div class="hvr-pulse-shrink">
+                    <a href="#"
+                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
+                        <img class="w-16 drop-shadow" src="{{ asset('icons/tools.svg') }}">
+                    </a>
+                </div>
 
             </nav>
         </div>
