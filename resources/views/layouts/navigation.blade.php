@@ -44,7 +44,7 @@
                     role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
                     style="display: none;">
 
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 font-century-gothic" role="menuitem" tabindex="-1"
+                    <a href="#" class="block px-4 py-2 text-sm text-black font-century-gothic" role="menuitem" tabindex="-1"
                         id="user-menu-item-2">Thio Van Agusti</a>
                     <hr>
 
