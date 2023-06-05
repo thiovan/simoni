@@ -2,7 +2,7 @@
 @section('dashboard.content')
     <div class="grid grid-cols-2 gap-x-4 md:gap-x-10 gap-y-4">
 
-        <div class="hvr-shrink">
+        <div class="hvr-shrink animate__animated animate__zoomIn animate__fast">
             <div
                 class="flex items-center justify-between h-16 text-sm text-white bg-center bg-no-repeat bg-cover rounded-md drop-shadow-lg lg:h-20 lg:px-8 sm:text-xl md:text-2xl lg:text-3xl bg-panel font-franklin-gothic">
                 <img class="w-8 ml-3" src="{{ asset('icons/chat.svg') }}">
@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div class="hvr-shrink">
+        <div class="hvr-shrink animate__animated animate__zoomIn animate__fast">
             <div
                 class="flex items-center justify-between h-16 text-sm text-white bg-center bg-no-repeat bg-cover rounded-md drop-shadow-lg lg:h-20 lg:px-8 sm:text-xl md:text-2xl lg:text-3xl bg-panel font-franklin-gothic">
                 <img class="w-8 ml-3" src="{{ asset('icons/chat.svg') }}">
@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="hvr-shrink">
+        <div class="hvr-shrink animate__animated animate__zoomIn animate__fast animate__delay-0.2s">
             <div
                 class="flex items-center justify-between h-16 text-sm text-white bg-center bg-no-repeat bg-cover rounded-md drop-shadow-lg lg:h-20 lg:px-8 sm:text-xl md:text-2xl lg:text-3xl bg-panel font-franklin-gothic">
                 <img class="w-8 ml-3" src="{{ asset('icons/chat.svg') }}">
@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="hvr-shrink">
+        <div class="hvr-shrink animate__animated animate__zoomIn animate__fast animate__delay-0.2s">
             <div
                 class="flex items-center justify-between h-16 text-sm text-white bg-center bg-no-repeat bg-cover rounded-md drop-shadow-lg lg:h-20 lg:px-8 sm:text-xl md:text-2xl lg:text-3xl bg-panel font-franklin-gothic">
                 <img class="w-8 ml-3" src="{{ asset('icons/chat.svg') }}">
@@ -47,7 +47,9 @@
                     GRAFIK BULANAN
                 </div>
                 <div class="flex items-center justify-center flex-1 py-4">
-                    <img class="w-full" src="{{ asset('icons/megaphone.svg') }}">
+                    <div class="hvr-shrink">
+                        <img class="w-full" src="{{ asset('icons/megaphone.svg') }}">
+                    </div>
                 </div>
             </div>
             <div class="w-full py-4 pr-8 overflow-hidden basis-2/3">

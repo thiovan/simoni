@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Comment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -74,7 +75,7 @@ class DashboardController extends Controller
 
     public function report()
     {
-        $comments = Comment::paginate(2);
+        $comments = Comment::paginate(6);
 
         return view("pages.dashboard.report", compact('comments'));
     }
