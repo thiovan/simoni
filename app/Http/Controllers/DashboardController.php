@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Type;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -76,7 +77,13 @@ class DashboardController extends Controller
     public function report()
     {
         $comments = Comment::paginate(6);
+        $categories = Category::get();
+        $types = Type::get();
 
-        return view("pages.dashboard.report", compact('comments'));
+        return view("pages.dashboard.report", [
+            "comments"      => $comments,
+            "categories"    => $categories,
+            "types"         => $types,
+        ]);
     }
 }

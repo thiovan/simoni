@@ -20,7 +20,7 @@ module.exports = {
                 "sidebar-alt": "#D60707",
                 "panel-chart": "#070726",
                 "panel-title": "#DB282E",
-                "panel-type": "#D91111"
+                "panel-type": "#D91111",
             },
         },
     },

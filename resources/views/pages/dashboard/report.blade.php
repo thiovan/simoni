@@ -15,7 +15,8 @@
                             <div class="flex">
                                 <img class="h-12" src="{{ asset('icons/report.svg') }}">
                                 <div class="flex flex-col ml-2">
-                                    <div class="font-bold capitalize">{{ $comment->category->name }}</div>
+                                    <div class="font-bold capitalize">{{ $comment->category->name ?? 'Belum Dikategorikan' }}
+                                    </div>
                                     <p class="w-full h-12 overflow-hidden text-ellipsis">
                                         {{ $comment->text }}
                                     </p>
@@ -31,7 +32,8 @@
                             <div
                                 class="pr-2 mt-2 text-sm font-bold text-right text-white capitalize rounded-md bg-panel-type">
                                 <span>
-                                    <i class="fa-solid fa-file-lines"></i> Laporan {{ $comment->type->name }}</span>
+                                    <i class="fa-solid fa-file-lines"></i> Laporan
+                                    {{ $comment->type->name ?? 'Belum Ditentukan' }}</span>
                             </div>
                         </div>
                     </div>
@@ -51,14 +53,14 @@
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
             class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"></div>
 
-        <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div x-show="open" class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
                 <div x-show="open" x-transition:enter="ease-out duration-300"
                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                     x-transition:leave="ease-in duration-200"
                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" @click.away="open = false"
                     class="relative px-4 pt-5 pb-4 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
 
                     <div class="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
@@ -82,15 +84,30 @@
                                 <p class="text-sm text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                     Consequatur amet labore.</p>
                             </div>
+
+                            <h3 class="text-sm font-medium leading-4 text-gray-900"><i
+                                    class="fa-regular fa-clock"></i>&nbsp;123</h3>
                         </div>
 
-                        <div>
+                        <hr class="my-2">
+
+                        <div class="mb-2">
+                            <label for="type" class="block text-sm font-medium text-gray-700">Jenis Laporan</label>
+                            <select id="type" name="type"
+                                class="block w-full py-2 pl-3 pr-10 mt-1 text-base capitalize border-gray-300 rounded-md focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm">
+                                @foreach ($types as $type)
+                                    <option value="{{ encrypt($type->id) }}">{{ $type->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-2">
                             <label for="category" class="block text-sm font-medium text-gray-700">Kategori Laporan</label>
                             <select id="category" name="category"
-                                class="block w-full py-2 pl-3 pr-10 mt-1 text-base border-gray-300 rounded-md focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm">
-                                <option>United States</option>
-                                <option selected>Canada</option>
-                                <option>Mexico</option>
+                                class="block w-full py-2 pl-3 pr-10 mt-1 text-base capitalize border-gray-300 rounded-md focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm">
+                                @foreach ($categories as $category)
+                                    <option value="{{ encrypt($category->id) }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
