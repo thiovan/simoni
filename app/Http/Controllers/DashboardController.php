@@ -29,24 +29,15 @@ class DashboardController extends Controller
             return $query->where('name', 'pujian');
         })->count();
 
-        $categoryTotal = [
-            [
-                "category"  => "aduan",
-                "total"     => $aduanTotal
-            ],
-            [
-                "category"  => "kritik",
-                "total"     => $kritikTotal
-            ],
-            [
-                "category"  => "saran",
-                "total"     => $saranTotal
-            ],
-            [
-                "category"  => "pujian",
-                "total"     => $pujianTotal
-            ],
-        ];
+        $categoryTotal = [];
+        $categories = Category::get();
+        foreach ($categories as $category) {
+            $total = Comment::where('category_id', $category->id)->count();
+            array_push($categoryTotal, [
+                "category"  => $category->name,
+                "total"     => $total
+            ]);
+        }
 
         $graphTotal = [];
         for ($i = 0; $i <= 5; $i++) {
