@@ -11,6 +11,13 @@ class Comment extends Model
     use HasFactory;
     use GeneratesUuid;
 
+    protected $hidden = ['id', 'account_id', 'type_id', 'category_id'];
+
+    public function account()
+    {
+        return $this->hasOne(Account::class, 'id', 'account_id');
+    }
+
     public function type()
     {
         return $this->hasOne(Type::class, 'id', 'type_id');

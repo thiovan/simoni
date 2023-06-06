@@ -76,7 +76,7 @@ class DashboardController extends Controller
 
     public function report()
     {
-        $comments = Comment::paginate(6);
+        $comments = Comment::with(["account", "type", "category"])->paginate(6);
         $categories = Category::get();
         $types = Type::get();
 
@@ -85,5 +85,29 @@ class DashboardController extends Controller
             "categories"    => $categories,
             "types"         => $types,
         ]);
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'uuid' => 'required',
+        ]);
+
+        $category = Category::where('uuid', $request->category)->first();
+        if ($category) {
+            $category = $category->id;
+        }
+
+        $type = Type::where('uuid', $request->type)->first();
+        if ($type) {
+            $type = $type->id;
+        }
+
+        $comment = Comment::where('uuid', $request->uuid)->first();
+        $comment->category_id = $category;
+        $comment->type_id = $type;
+        $comment->save();
+
+        return back()->with("message", "Data berhasil disimpan.");
     }
 }

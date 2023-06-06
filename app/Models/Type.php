@@ -10,4 +10,6 @@ class Type extends Model
 {
     use HasFactory;
     use GeneratesUuid;
+
+    protected $hidden = ['id'];
 }
