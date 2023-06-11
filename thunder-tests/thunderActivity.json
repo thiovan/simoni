@@ -4,16 +4,16 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:8000/",
-    "url": "http://aduan.kecgajahmungkur.semarangkota.go.id/api/comment/store",
+    "url": "http://localhost:8000/api/comments/store",
     "method": "POST",
     "sortNum": 0,
     "created": "2023-05-04T15:15:06.786Z",
-    "modified": "2023-05-07T07:06:59.668Z",
+    "modified": "2023-06-11T07:21:23.437Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"sosmed\": \"instagram\",\n  \"username\": \"mbakitasmg\",\n  \"comments\": [\n    {\n      \"url\": \"https://www.instagram.com/p/Cr5mvxZg4fp/\",\n      \"username\": \"donowaatudu\",\n      \"comment\": \"Bu, mbo tolong bu jangan update cm peresmian2 acara terus tp jg update progress kota semarang mau dibawa ke arah mana.. Atau kl ada bbrp proyek besar mbo d update selesainya kpn kira2 biar kt lbh legowo kl macet misal galian pipa dkt hanoman dan selurusan kalibanteng. Maaf tugas ibu berat bgt soalnya Pak Hendar dulu begitu, masyarakat sudah dimanja dengan informasi yang tepat dan cepat dr walikotanya. Kl info formal sudah terupdate, br tambah lucu2an selingan boleh lah..\",\n      \"datetime\": \"2023-05-06T18:38:24.000Z\"\n    }\n  ]\n}",
+      "raw": "{\r\n  \"sosmed_id\": \"d6c43214-0474-11ee-a9dd-0050568154b2\",\r\n  \"device_name\": \"test\",\r\n  \"comments\": [\r\n    {\r\n      \"url\": \"https://www.instagram.com/p/CtVV_JjgGc_/\",\r\n      \"username\": \"yusadn_\",\r\n      \"comment\": \"yang muda jangan kalah semangat untuk berolahragaa juga\",\r\n      \"datetime\": \"2023-06-11 10:39:59\"\r\n    },\r\n    {\r\n      \"url\": \"https://www.instagram.com/p/CtVV_JjgGc_/\",\r\n      \"username\": \"maz.agunk\",\r\n      \"comment\": \"Tua tua keladi ..makin tua makin sehat jasmani😁\",\r\n      \"datetime\": \"2023-06-11 09:48:00\"\r\n    },\r\n    {\r\n      \"url\": \"https://www.instagram.com/p/CtVV_JjgGc_/\",\r\n      \"username\": \"nurulhidayh____\",\r\n      \"comment\": \"Luar biasa.... ❤️❤️\",\r\n      \"datetime\": \"2023-06-11 09:37:31\"\r\n    },\r\n    {\r\n      \"url\": \"https://www.instagram.com/p/CtVV_JjgGc_/\",\r\n      \"username\": \"naufaldzulfikar24\",\r\n      \"comment\": \"Raga boleh menua tapi Jiwa tetap muda😂👏\",\r\n      \"datetime\": \"2023-06-11 10:29:43\"\r\n    },\r\n    {\r\n      \"url\": \"https://www.instagram.com/p/CtVV_JjgGc_/\",\r\n      \"username\": \"naufaldzulfikar24\",\r\n      \"comment\": \"Raga boleh menua tapi Jiwa tetap muda😂👏\",\r\n      \"datetime\": \"2023-06-11 10:29:43\"\r\n    },\r\n    {\r\n      \"url\": \"https://www.instagram.com/p/CtVV_JjgGc_/\",\r\n      \"username\": \"infokejadian_genuk\",\r\n      \"comment\": \"👍🏻👍🏻👍🏻👍🏻👍🏻\",\r\n      \"datetime\": \"2023-06-11 09:50:45\"\r\n    },\r\n    {\r\n      \"url\": \"https://www.instagram.com/p/CtVV_JjgGc_/\",\r\n      \"username\": \"evarstia\",\r\n      \"comment\": \"👏�👏\",\r\n      \"datetime\": \"2023-06-11 09: 50: 54\"\r\n    },\r\n    {\r\n      \"url\": \"https: //www.instagram.com/p/CtVV_JjgGc_/\",\r\n      \"username\": \"adikrisna7gmail.com6\",\r\n      \"comment\": \"Salam Olah Raga...TETEP SEHAT TETEP SEMANGAT\",\r\n      \"datetime\": \"2023-06-11 13:43:47\"\r\n    },\r\n    {\r\n      \"url\": \"https://www.instagram.com/p/CtVV_JjgGc_/\",\r\n      \"username\": \"grosir_kurma_oleh_oleh__haji\",\r\n      \"comment\": \"❤️❤️❤️\",\r\n      \"datetime\": \"2023-06-11 09:41:3  33\"\r\n    },\r\n    {\r\n      \"url\": \"https://www.instagram.com/p/CtVV_JjgGc_/\",\r\n      \"username\": \"yudisperkim\",\r\n      \"comment\": \"🫶🫶🫶\",\r\n      \"datetime\": \"2023-06-11 09:56:53\"\r\n    }\r\n  ]\r\n}",
       "form": []
     },
     "tests": []
