@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
-use App\Models\Admin;
 use App\Models\Comment;
 use App\Models\Config;
 use App\Models\Keyword;
 use App\Models\KeywordMatch;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -19,9 +19,9 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'sosmed'    => 'required',
-            'username'  => 'required',
-            'comments'  => 'required|array',
+            'sosmed_id'     => 'required',
+            'device_name'   => 'required',
+            'comments'      => 'required|array',
         ]);
 
         if ($validator->fails()) {
@@ -33,8 +33,7 @@ class CommentController extends Controller
         }
 
         $account = Account::where([
-            'sosmed'    => $request->sosmed,
-            'username'  => $request->username,
+            'uuid'      => $request->sosmed_id,
             'is_enable' => 1
         ])->first();
 
@@ -48,11 +47,11 @@ class CommentController extends Controller
 
         $keywords = Keyword::get();
         $config = Config::pluck('value', 'key');
-        $admins = Admin::get();
+        $admins = User::get();
 
         foreach ($request->comments as $comment) {
             $checkComment = Comment::where([
-                'sender'    => trim(str_replace('Verified', '', $comment['username'])),
+                'sender'    => $comment['username'],
                 'text'      => json_encode($comment['comment']),
                 'url'       => $comment['url']
             ])->first();
@@ -74,7 +73,7 @@ class CommentController extends Controller
 
                 $newComment = new Comment;
                 $newComment->account_id = $account->id;
-                $newComment->sender = trim(str_replace('Verified', '', $comment['username']));
+                $newComment->sender = $comment['username'];
                 $newComment->text = json_encode($comment['comment']);
                 $newComment->datetime = $datetime->format('Y-m-d H:i:s');
                 $newComment->url = $comment['url'];
@@ -87,53 +86,53 @@ class CommentController extends Controller
                     $keywordMatch->save();
                 }
 
-                $message = "
-                    *⚠️ SI PANTAU ADUAN ⚠️*
+                // $message = "
+                //     *⚠️ SI PANTAU ADUAN ⚠️*
 
-                    *Sumber:*
-                    _@{$account->username} ({$account->sosmed})_
+                //     *Sumber:*
+                //     _@{$account->username} ({$account->sosmed})_
 
-                    *Waktu:*
-                    _" . Carbon::parse($newComment->datetime)->format("d/m/Y H:i:s") . "_
-                    _" . Carbon::parse($newComment->datetime)->diffForHumans() . "_
+                //     *Waktu:*
+                //     _" . Carbon::parse($newComment->datetime)->format("d/m/Y H:i:s") . "_
+                //     _" . Carbon::parse($newComment->datetime)->diffForHumans() . "_
 
-                    *Pengirim:*
-                    _@{$newComment->sender}_
-                    _https://www.instagram.com/{$newComment->sender}_
+                //     *Pengirim:*
+                //     _@{$newComment->sender}_
+                //     _https://www.instagram.com/{$newComment->sender}_
 
-                    *Komentar:*
-                    _" . json_decode($newComment->text) . "_
+                //     *Komentar:*
+                //     _" . json_decode($newComment->text) . "_
 
-                    *Keyword:*
-                    _" . implode(', ', array_column($matches, 'text')) . "_
+                //     *Keyword:*
+                //     _" . implode(', ', array_column($matches, 'text')) . "_
 
-                    *Url:*
-                    _{$newComment->url}_
-                ";
-                $message = preg_replace('/^ +/m', '', $message);
+                //     *Url:*
+                //     _{$newComment->url}_
+                // ";
+                // $message = preg_replace('/^ +/m', '', $message);
 
-                $isSent = false;
-                foreach ($admins as $admin) {
-                    $response = Http::post("{$config->get('whatsapp_api')}/send/text", [
-                        "phone"     => $admin->phone,
-                        "message"   => $message
-                    ]);
-                    if ($response->successful()) {
-                        $isSent = true;
-                    }
-                }
+                // $isSent = false;
+                // foreach ($admins as $admin) {
+                //     $response = Http::post("{$config->get('whatsapp_api')}/send/text", [
+                //         "phone"     => $admin->phone,
+                //         "message"   => $message
+                //     ]);
+                //     if ($response->successful()) {
+                //         $isSent = true;
+                //     }
+                // }
 
-                if ($isSent) {
-                    $newComment->is_sent = 1;
-                    $newComment->save();
-                }
+                // if ($isSent) {
+                //     $newComment->is_sent = 1;
+                //     $newComment->save();
+                // }
             }
         }
 
         return response()->json([
             'success'   => true,
             'message'   => 'Comments saved successfully',
-            'data'      => $request->all()
+            'data'      => []
         ]);
     }
 }
