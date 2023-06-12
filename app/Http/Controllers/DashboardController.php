@@ -67,7 +67,7 @@ class DashboardController extends Controller
 
     public function report()
     {
-        $comments = Comment::with(["account", "type", "category"])->paginate(6);
+        $comments = Comment::with(["account", "type", "category"])->paginate(8);
         $categories = Category::get();
         $types = Type::get();
 
@@ -100,5 +100,14 @@ class DashboardController extends Controller
         $comment->save();
 
         return back()->with("message", "Data berhasil disimpan.");
+    }
+
+    public function category()
+    {
+        $categories = Category::paginate(12);
+
+        return view("pages.dashboard.category", [
+            "categories" => $categories
+        ]);
     }
 }

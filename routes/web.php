@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/report', [DashboardController::class, 'report'])->name('report');
     Route::post('/update', [DashboardController::class, 'update'])->name('update');
+    Route::get('/category', [DashboardController::class, 'category'])->name('category');
 });
 
 Route::get('/playground', [PlaygroundController::class, 'index']);

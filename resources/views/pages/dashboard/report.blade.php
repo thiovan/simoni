@@ -8,10 +8,6 @@
                 data: null
             }
         }
-
-        document.addEventListener("data", (data) => {
-            console.log(data);
-        });
     </script>
 
     <div>
