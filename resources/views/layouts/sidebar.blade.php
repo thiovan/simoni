@@ -43,30 +43,38 @@
 
                     <div class="hvr-pulse-shrink">
                         <a href="dashboard"
-                            class="flex items-center justify-center px-2 py-2 rounded-md group {{ Route::currentRouteName() == 'dashboard' ? 'bg-red-700' : '' }}">
+                            class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700 {{ Route::currentRouteName() == 'dashboard' ? 'bg-red-700' : '' }}">
                             <img class="w-16 drop-shadow" src="{{ asset('icons/home.svg') }}">
                         </a>
                     </div>
 
-                    <a href="report"
-                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700 {{ Route::currentRouteName() == 'report' ? 'bg-red-700' : '' }}">
-                        <img class="w-16 drop-shadow" src="{{ asset('icons/envelop.svg') }}">
-                    </a>
+                    <div class="hvr-pulse-shrink">
+                        <a href="report"
+                            class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700 {{ Route::currentRouteName() == 'report' ? 'bg-red-700' : '' }}">
+                            <img class="w-16 drop-shadow" src="{{ asset('icons/envelop.svg') }}">
+                        </a>
+                    </div>
 
-                    <a href="#"
-                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
-                        <img class="w-16 drop-shadow" src="{{ asset('icons/gps.svg') }}">
-                    </a>
+                    <div class="hvr-pulse-shrink">
+                        <a href="keyword"
+                            class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700 {{ Route::currentRouteName() == 'keyword' ? 'bg-red-700' : '' }}">
+                            <img class="w-16 drop-shadow" src="{{ asset('icons/gps.svg') }}">
+                        </a>
+                    </div>
 
-                    <a href="#"
-                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
-                        <img class="w-16 drop-shadow" src="{{ asset('icons/checklist.svg') }}">
-                    </a>
+                    <div class="hvr-pulse-shrink">
+                        <a href="type"
+                            class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700 {{ Route::currentRouteName() == 'type' ? 'bg-red-700' : '' }}">
+                            <img class="w-16 drop-shadow" src="{{ asset('icons/checklist.svg') }}">
+                        </a>
+                    </div>
 
-                    <a href="#"
-                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
-                        <img class="w-16 drop-shadow" src="{{ asset('icons/tools.svg') }}">
-                    </a>
+                    <div class="hvr-pulse-shrink">
+                        <a href="category"
+                            class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700 {{ Route::currentRouteName() == 'category' ? 'bg-red-700' : '' }}">
+                            <img class="w-16 drop-shadow" src="{{ asset('icons/tools.svg') }}">
+                        </a>
+                    </div>
 
                 </nav>
             </div>
@@ -93,7 +101,8 @@
             <nav class="grid grid-cols-2 px-2 pb-4 gap-x-3 gap-y-8">
 
                 <div class="hvr-pulse-shrink">
-                    <a href="dashboard" class="flex items-center justify-center px-2 py-2 rounded-md group {{ Route::currentRouteName() == 'dashboard' ? 'bg-red-700' : '' }}">
+                    <a href="dashboard"
+                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700 {{ Route::currentRouteName() == 'dashboard' ? 'bg-red-700' : '' }}">
                         <img class="w-16 drop-shadow" src="{{ asset('icons/home.svg') }}">
                     </a>
                 </div>
@@ -106,22 +115,22 @@
                 </div>
 
                 <div class="hvr-pulse-shrink">
-                    <a href="#"
-                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
+                    <a href="keyword"
+                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700 {{ Route::currentRouteName() == 'keyword' ? 'bg-red-700' : '' }}">
                         <img class="w-16 drop-shadow" src="{{ asset('icons/gps.svg') }}">
                     </a>
                 </div>
 
                 <div class="hvr-pulse-shrink">
-                    <a href="#"
-                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
+                    <a href="type"
+                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700 {{ Route::currentRouteName() == 'type' ? 'bg-red-700' : '' }}">
                         <img class="w-16 drop-shadow" src="{{ asset('icons/checklist.svg') }}">
                     </a>
                 </div>
 
                 <div class="hvr-pulse-shrink">
-                    <a href="#"
-                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700">
+                    <a href="category"
+                        class="flex items-center justify-center px-2 py-2 rounded-md group hover:bg-red-700 {{ Route::currentRouteName() == 'category' ? 'bg-red-700' : '' }}">
                         <img class="w-16 drop-shadow" src="{{ asset('icons/tools.svg') }}">
                     </a>
                 </div>
