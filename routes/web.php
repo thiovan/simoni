@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlaygroundController;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/report', [DashboardController::class, 'report'])->name('report');
     Route::post('/update', [DashboardController::class, 'update'])->name('update');
-    Route::get('/category', [DashboardController::class, 'category'])->name('category');
+
+    Route::get('/category', [CategoryController::class, 'index'])->name('category');
+    Route::post('/category/add', [CategoryController::class, 'add']);
+    Route::post('/category/update', [CategoryController::class, 'update']);
+    Route::get('/category/delete/{uuid}', [CategoryController::class, 'delete']);
 });
 
 Route::get('/playground', [PlaygroundController::class, 'index']);

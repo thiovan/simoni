@@ -101,13 +101,4 @@ class DashboardController extends Controller
 
         return back()->with("message", "Data berhasil disimpan.");
     }
-
-    public function category()
-    {
-        $categories = Category::paginate(12);
-
-        return view("pages.dashboard.category", [
-            "categories" => $categories
-        ]);
-    }
 }
