@@ -19,7 +19,7 @@
     <div>
         <div
             class="flex items-center justify-center w-full h-16 text-2xl text-center text-white md:text-3xl drop-shadow-xl bg-panel-title rounded-xl font-century-gothic">
-            DATA KATEGORI</div>
+            DATA KATA KUNCI</div>
 
         @if (session()->has('success'))
             <div x-data="{ open: true }" x-show="open" class="animate__animated animate__flash animate__repeat-2">
@@ -89,29 +89,29 @@
 
         <button @click='$dispatch("add")' type="button"
             class="inline-flex items-center justify-center w-full px-4 py-2 my-4 text-base font-medium text-center text-red-700 bg-red-100 border border-transparent rounded-md md:w-auto hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-500"><i
-                class="fa-solid fa-plus"></i> &nbsp; Tambah Kategori</button>
+                class="fa-solid fa-plus"></i> &nbsp; Tambah Kata Kunci</button>
 
         <div class="w-full p-4 bg-gray-400 bg-opacity-50 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm">
 
             <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
                 @php($delay = 0)
-                @foreach ($categories as $category)
+                @foreach ($keywords as $keyword)
                     <div
                         class="hvr-shrink animate__animated animate__zoomIn animate__fast animate__delay-{{ $delay }}s">
                         <li class="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
                             <div class="flex items-center justify-between w-full p-6 space-x-6">
                                 <div class="flex-1 truncate">
                                     <div class="flex items-center space-x-3">
-                                        <h3 class="font-medium text-gray-900 truncate">Nama Kategori</h3>
+                                        <h3 class="font-medium text-gray-900 truncate">Kata Kunci</h3>
                                     </div>
-                                    <p class="mt-1 text-gray-500 capitalize truncate">{{ $category->name }}</p>
+                                    <p class="mt-1 text-gray-500 capitalize truncate">{{ $keyword->text }}</p>
                                 </div>
                                 <img class="h-12" src="{{ asset('icons/megaphone-alt.svg') }}">
                             </div>
                             <div class="bg-gray-100 rounded-b-lg">
                                 <div class="flex -mt-px divide-x divide-gray-200">
-                                    <div class="flex flex-1 w-0" @click='$dispatch("edit", @json($category))'>
+                                    <div class="flex flex-1 w-0" @click='$dispatch("edit", @json($keyword))'>
                                         <a href="#"
                                             class="relative inline-flex items-center justify-center flex-1 w-0 py-4 -mr-px text-sm font-medium text-gray-700 border border-transparent rounded-bl-lg hover:text-blue-500">
                                             <i class="fa-solid fa-pencil"></i>
@@ -119,7 +119,7 @@
                                         </a>
                                     </div>
                                     <div class="flex flex-1 w-0 -ml-px"
-                                        @click='$dispatch("delete", @json($category))'>
+                                        @click='$dispatch("delete", @json($keyword))'>
                                         <a href="#"
                                             class="relative inline-flex items-center justify-center flex-1 w-0 py-4 text-sm font-medium text-gray-700 border border-transparent rounded-br-lg hover:text-red-500">
                                             <i class="fa-solid fa-trash-can"></i>
@@ -136,7 +136,7 @@
             </ul>
 
             <div class="z-50">
-                {{ $categories->links('layouts.pagination') }}
+                {{ $keywords->links('layouts.pagination') }}
             </div>
 
         </div>
@@ -174,21 +174,21 @@
                         </button>
                     </div>
 
-                    <form class="mb-0" action="/category/add" method="POST">
+                    <form class="mb-0" action="/keyword/add" method="POST">
                         @csrf
 
                         <div>
-                            <h3 class="mb-4 text-lg font-medium leading-6 text-center text-gray-900">Tambah Kategori
+                            <h3 class="mb-4 text-lg font-medium leading-6 text-center text-gray-900">Tambah Kata Kunci
                             </h3>
 
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Nama Kategori</label>
+                                <label class="block text-sm font-medium text-gray-700">Teks Kata Kunci</label>
                                 <div class="flex mt-1 rounded-md shadow-sm">
                                     <span
                                         class="inline-flex items-center px-3 text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50 sm:text-sm">
                                         <i class="fa-solid fa-plus"></i>
                                     </span>
-                                    <input name="category" type="text"
+                                    <input name="keyword" type="text"
                                         class="flex-1 block w-full min-w-0 px-3 py-2 border-gray-300 rounded-none rounded-r-md focus:border-red-500 focus:ring-red-500 sm:text-sm">
                                 </div>
                             </div>
@@ -237,11 +237,11 @@
                         </button>
                     </div>
 
-                    <form class="mb-0" action="/category/update" method="POST">
+                    <form class="mb-0" action="/keyword/update" method="POST">
                         @csrf
 
                         <div>
-                            <h3 class="mb-4 text-lg font-medium leading-6 text-center text-gray-900">Ubah Kategori
+                            <h3 class="mb-4 text-lg font-medium leading-6 text-center text-gray-900">Ubah Kata Kunci
                             </h3>
 
                             <template x-if="data">
@@ -250,12 +250,12 @@
 
                             <template x-if="data">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700">Nama Kategori</label>
+                                    <label class="block text-sm font-medium text-gray-700">Teks Kata Kunci</label>
                                     <div class="flex mt-1 rounded-md shadow-sm">
                                         <span
                                             class="inline-flex items-center px-3 text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50 sm:text-sm"><i
                                                 class="fa-solid fa-pencil"></i></span>
-                                        <input x-model="data.name" name="category" type="text"
+                                        <input x-model="data.text" name="keyword" type="text"
                                             class="flex-1 block w-full min-w-0 px-3 py-2 border-gray-300 rounded-none rounded-r-md focus:border-red-500 focus:ring-red-500 sm:text-sm">
                                     </div>
                                 </div>
@@ -304,12 +304,12 @@
                                 </svg>
                             </div>
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Hapus Kategori
+                                <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Hapus Kata Kunci
                                 </h3>
                                 <div class="mt-2">
                                     <template x-if="data">
-                                        <p class="text-sm text-gray-500">Apakah anda yakin ingin menghapus kategori "<span
-                                                x-text="data.name"></span>" ?</p>
+                                        <p class="text-sm text-gray-500">Apakah anda yakin ingin menghapus kata kunci "<span
+                                                x-text="data.text"></span>" ?</p>
                                     </template>
                                 </div>
                             </div>
@@ -317,7 +317,7 @@
                     </div>
                     <div class="px-4 py-3 bg-gray-100 sm:flex sm:flex-row-reverse sm:px-6">
                         <template x-if="data">
-                            <a x-bind:href="'/category/delete/' + data.uuid" href="#">
+                            <a x-bind:href="'/keyword/delete/' + data.uuid" href="#">
                                 <button type="button"
                                     class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Hapus</button>
                             </a>

@@ -25,14 +25,14 @@ class CategoryController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->with("error", "Kategori gagal disimpan.");
+            return back()->with("error", "Kategori gagal ditambahkan.");
         }
 
         $category = new Category;
         $category->name = strtolower($request->category);
         $category->save();
 
-        return back()->with("success", "Kategori berhasil disimpan.");
+        return back()->with("success", "Kategori berhasil ditambahkan.");
     }
 
     public function update(Request $request)
@@ -43,7 +43,7 @@ class CategoryController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->with("error", "Kategori gagal disimpan.");
+            return back()->with("error", "Kategori gagal diubah.");
         }
 
         $category = Category::where('uuid', $request->uuid)->first();
@@ -53,7 +53,7 @@ class CategoryController extends Controller
         $category->name = strtolower($request->category);
         $category->save();
 
-        return back()->with("success", "Kategori berhasil disimpan.");
+        return back()->with("success", "Kategori berhasil diubah.");
     }
 
     public function delete($uuid)
