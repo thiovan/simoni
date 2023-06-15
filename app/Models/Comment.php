@@ -27,4 +27,9 @@ class Comment extends Model
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
     }
+
+    public function keyword_match()
+    {
+        return $this->hasMany(KeywordMatch::class, 'comment_id', 'id');
+    }
 }

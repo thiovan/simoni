@@ -137,6 +137,17 @@
                             <template x-if="data">
                                 <div class="mt-2">
                                     <p class="text-sm text-gray-500">
+                                        [
+                                        <template x-for="(match, index) in data.keyword_match">
+                                            <span class="italic" x-text="match.keyword.text + (index < data.keyword_match.length - 1 ? ' | ' : '')"></span>
+                                        </template>
+                                        ]
+                                    </p>
+                                </div>
+                            </template>
+                            <template x-if="data">
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-500">
                                         <i class="fa-regular fa-clock"></i>
                                         &nbsp;<span x-text="data.datetime"></span>
                                     </p>

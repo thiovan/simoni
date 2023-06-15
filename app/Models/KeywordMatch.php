@@ -12,4 +12,9 @@ class KeywordMatch extends Model
     use GeneratesUuid;
 
     protected $hidden = ['id'];
+
+    public function keyword()
+    {
+        return $this->hasOne(Keyword::class, 'id', 'keyword_id');
+    }
 }
