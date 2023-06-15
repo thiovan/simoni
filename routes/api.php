@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/comments/store', [CommentController::class, 'store']);
+Route::post('/comments/error', [CommentController::class, 'error']);

@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Config;
 use App\Models\Keyword;
 use App\Models\KeywordMatch;
+use App\Models\Log;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -86,52 +87,92 @@ class CommentController extends Controller
                     $keywordMatch->save();
                 }
 
-                // $message = "
-                //     *⚠️ SI PANTAU ADUAN ⚠️*
+                $message = "
+                    *⚠️ SI PANTAU ADUAN ⚠️*
 
-                //     *Sumber:*
-                //     _@{$account->username} ({$account->sosmed})_
+                    *Sumber:*
+                    _@{$account->username} ({$account->sosmed})_
 
-                //     *Waktu:*
-                //     _" . Carbon::parse($newComment->datetime)->format("d/m/Y H:i:s") . "_
-                //     _" . Carbon::parse($newComment->datetime)->diffForHumans() . "_
+                    *Waktu:*
+                    _" . Carbon::parse($newComment->datetime)->format("d/m/Y H:i:s") . "_
+                    _" . Carbon::parse($newComment->datetime)->diffForHumans() . "_
 
-                //     *Pengirim:*
-                //     _@{$newComment->sender}_
-                //     _https://www.instagram.com/{$newComment->sender}_
+                    *Pengirim:*
+                    _@{$newComment->sender}_
+                    _https://www.instagram.com/{$newComment->sender}_
 
-                //     *Komentar:*
-                //     _" . json_decode($newComment->text) . "_
+                    *Komentar:*
+                    _" . json_decode($newComment->text) . "_
 
-                //     *Keyword:*
-                //     _" . implode(', ', array_column($matches, 'text')) . "_
+                    *Keyword:*
+                    _" . implode(', ', array_column($matches, 'text')) . "_
 
-                //     *Url:*
-                //     _{$newComment->url}_
-                // ";
-                // $message = preg_replace('/^ +/m', '', $message);
+                    *Url:*
+                    _{$newComment->url}_
+                ";
+                $message = preg_replace('/^ +/m', '', $message);
 
-                // $isSent = false;
-                // foreach ($admins as $admin) {
-                //     $response = Http::post("{$config->get('whatsapp_api')}/send/text", [
-                //         "phone"     => $admin->phone,
-                //         "message"   => $message
-                //     ]);
-                //     if ($response->successful()) {
-                //         $isSent = true;
-                //     }
-                // }
+                $isSent = false;
+                foreach ($admins as $admin) {
+                    try {
+                        $response = Http::post("{$config->get('whatsapp_api')}/send/text", [
+                            "phone"     => $admin->phone,
+                            "message"   => $message
+                        ]);
+                    } catch (Exception $e) {
+                        print $e;
+                        continue;
+                    }
 
-                // if ($isSent) {
-                //     $newComment->is_sent = 1;
-                //     $newComment->save();
-                // }
+                    if ($response->successful()) {
+                        $isSent = true;
+                    }
+                }
+
+                if ($isSent) {
+                    $newComment->is_sent = 1;
+                    $newComment->save();
+                }
             }
+        }
+
+        if ($request->has('message')) {
+            $log = new Log;
+            $log->device_name = $request->device_name;
+            $log->message = json_encode($request->message);
+            $log->save();
         }
 
         return response()->json([
             'success'   => true,
             'message'   => 'Comments saved successfully',
+            'data'      => []
+        ]);
+    }
+
+    public function error(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'device_name'   => 'required',
+            'message'       => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success'   => false,
+                'message'   => 'Invalid request params',
+                'data'      => null
+            ], 400);
+        }
+
+        $log = new Log;
+        $log->device_name = $request->device_name;
+        $log->message = json_encode($request->message);
+        $log->save();
+
+        return response()->json([
+            'success'   => true,
+            'message'   => 'Error message saved successfully',
             'data'      => []
         ]);
     }
