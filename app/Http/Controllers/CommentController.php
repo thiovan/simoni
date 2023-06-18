@@ -17,6 +17,16 @@ use Illuminate\Support\Facades\Http;
 class CommentController extends Controller
 {
 
+    public function config()
+    {
+        $account = Account::where('is_enable', 1)->get();
+        return response()->json([
+            'success'   => true,
+            'message'   => 'Config retrieved successfully',
+            'data'      => $account
+        ]);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -120,7 +130,6 @@ class CommentController extends Controller
                             "message"   => $message
                         ]);
                     } catch (Exception $e) {
-                        print $e;
                         continue;
                     }
 
@@ -136,12 +145,10 @@ class CommentController extends Controller
             }
         }
 
-        if ($request->has('message')) {
-            $log = new Log;
-            $log->device_name = $request->device_name;
-            $log->message = json_encode($request->message);
-            $log->save();
-        }
+        $log = new Log;
+        $log->device_name = $request->device_name;
+        $log->message = count($request->comments) . " comments successfully scanned from " . $account->username . " (" . $account->sosmed . ")";
+        $log->save();
 
         return response()->json([
             'success'   => true,
@@ -167,7 +174,7 @@ class CommentController extends Controller
 
         $log = new Log;
         $log->device_name = $request->device_name;
-        $log->message = json_encode($request->message);
+        $log->message = $request->message;
         $log->save();
 
         return response()->json([
