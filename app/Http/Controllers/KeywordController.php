@@ -11,7 +11,7 @@ class KeywordController extends Controller
 {
     public function index()
     {
-        $keywords = Keyword::paginate(12);
+        $keywords = Keyword::orderby('text', 'ASC')->paginate(12);
 
         return view("pages.dashboard.keyword", [
             "keywords" => $keywords

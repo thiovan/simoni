@@ -11,7 +11,7 @@ class TypeController extends Controller
 {
     public function index()
     {
-        $types = Type::paginate(12);
+        $types = Type::orderby('name', 'ASC')->paginate(12);
 
         return view("pages.dashboard.type", [
             "types" => $types

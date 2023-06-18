@@ -67,7 +67,9 @@ class DashboardController extends Controller
 
     public function report()
     {
-        $comments = Comment::with(["account", "type", "category", "keyword_match", "keyword_match.keyword"])->paginate(8);
+        $comments = Comment::with(["account", "type", "category", "keyword_match", "keyword_match.keyword"])
+            ->orderBy('datetime', 'DESC')
+            ->paginate(8);
         $categories = Category::get();
         $types = Type::get();
 
