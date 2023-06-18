@@ -63,7 +63,7 @@
                                         {{ $comment->category->name ?? 'Belum Dikategorikan' }}
                                     </div>
                                     <p class="w-full h-12 overflow-hidden text-ellipsis">
-                                        {{ $comment->text }}
+                                        {{ json_decode($comment->text) }}
                                     </p>
                                     <div class="flex mt-1">
                                         <img class="h-10" src="{{ asset('icons/operator.svg') }}">
@@ -131,7 +131,7 @@
                             </template>
                             <template x-if="data">
                                 <div class="mt-2">
-                                    <p x-text="data.text" class="text-sm text-gray-500"></p>
+                                    <p x-text="JSON.parse(data.text)" class="text-sm text-gray-500"></p>
                                 </div>
                             </template>
                             <template x-if="data">
