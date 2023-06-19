@@ -224,7 +224,7 @@
                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     @click.away="open = false"
-                    class="relative px-4 pt-5 pb-4 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                    class="relative w-full max-w-lg px-4 pt-5 pb-4 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:p-6">
 
                     <div class="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
                         <button x-on:click="open = false" type="button"
@@ -292,7 +292,7 @@
                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     @click.away="open = false"
-                    class="relative overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-lg">
+                    class="relative w-full max-w-lg overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8">
                     <div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
                         <div class="sm:flex sm:items-start">
                             <div
