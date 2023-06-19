@@ -131,28 +131,36 @@
                             </template>
                             <template x-if="data">
                                 <div class="mt-2">
-                                    <p x-text="JSON.parse(data.text)" class="text-sm text-gray-500"></p>
+                                    <p x-text="JSON.parse(data.text)" class="text-sm"></p>
                                 </div>
                             </template>
                             <template x-if="data">
-                                <div class="mt-2">
+                                <div class="mt-1">
                                     <p class="text-sm text-gray-500">
-                                        [
+                                        Kata kunci: [
                                         <template x-for="(match, index) in data.keyword_match">
-                                            <span class="italic" x-text="match.keyword.text + (index < data.keyword_match.length - 1 ? ' | ' : '')"></span>
+                                            <span class="italic"
+                                                x-text="match.keyword.text + (index < data.keyword_match.length - 1 ? ' | ' : '')"></span>
                                         </template>
                                         ]
                                     </p>
                                 </div>
                             </template>
-                            <template x-if="data">
-                                <div class="mt-2">
+                            <div class="flex justify-between mt-2 text-center">
+                                <template x-if="data">
+                                    <p class="text-sm text-gray-500">
+                                        <i class="fa-regular fa-comment-dots"></i>
+                                        &nbsp;<span x-text="data.account.username"></span> (<span
+                                            x-text="data.account.sosmed"></span>)
+                                    </p>
+                                </template>
+                                <template x-if="data">
                                     <p class="text-sm text-gray-500">
                                         <i class="fa-regular fa-clock"></i>
                                         &nbsp;<span x-text="data.datetime"></span>
                                     </p>
-                                </div>
-                            </template>
+                                </template>
+                            </div>
 
                             <template x-if="data">
                                 <div class="mt-3">

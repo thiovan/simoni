@@ -1969,8 +1969,16 @@ select {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+
   .sm\:flex-row-reverse {
     flex-direction: row-reverse;
+  }
+
+  .sm\:flex-col {
+    flex-direction: column;
   }
 
   .sm\:items-start {
@@ -2076,8 +2084,16 @@ select {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .md\:flex-row {
+    flex-direction: row;
+  }
+
   .md\:flex-col {
     flex-direction: column;
+  }
+
+  .md\:justify-between {
+    justify-content: space-between;
   }
 
   .md\:gap-x-10 {
