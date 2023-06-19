@@ -11,7 +11,7 @@
     </button>
     <div class="flex justify-between flex-1 px-4 md:px-8">
         <div class="flex flex-1">
-            <form class="flex items-center justify-center w-full my-2 md:ml-0" action="#" method="GET">
+            <form class="{{ Route::currentRouteName() == 'dashboard' ? 'hidden' : '' }} flex items-center justify-center w-full my-2 md:ml-0" action="{{ Route::currentRouteName() }}" method="GET">
                 <label for="search-field" class="sr-only">Pencarian</label>
                 <div class="relative w-full text-gray-400 focus-within:text-gray-600">
                     <div class="absolute inset-y-0 flex items-center pointer-events-none left-4">
@@ -19,7 +19,7 @@
                     </div>
                     <input id="search-field"
                         class="block w-full h-full py-2 pr-3 text-lg text-gray-900 placeholder-gray-500 border-transparent rounded-lg pl-14 placeholder:text-lg placeholder:font-century-gothic focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm"
-                        placeholder="Pencarian" type="search" name="search">
+                        placeholder="Pencarian" type="search" name="search" value="{{ Request::get('search') }}">
                 </div>
             </form>
         </div>

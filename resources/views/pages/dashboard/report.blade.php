@@ -181,7 +181,7 @@
 
                         <hr class="my-4">
 
-                        <form action="/update" method="POST">
+                        <form action="/report/update" method="POST">
                             @csrf
 
                             <template x-if="data">

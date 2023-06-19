@@ -9,9 +9,15 @@ use Illuminate\Support\Facades\Validator;
 
 class KeywordController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $keywords = Keyword::orderby('text', 'ASC')->paginate(12);
+        if ($request->has('search')) {
+            $keywords = Keyword::where('text', 'LIKE', '%' . $request->search . '%')
+            ->orderby('text', 'ASC')
+            ->paginate(12);
+        } else {
+            $keywords = Keyword::orderby('text', 'ASC')->paginate(12);
+        }
 
         return view("pages.dashboard.keyword", [
             "keywords" => $keywords

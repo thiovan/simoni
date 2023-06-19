@@ -9,9 +9,15 @@ use Illuminate\Support\Facades\Validator;
 
 class TypeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $types = Type::orderby('name', 'ASC')->paginate(12);
+        if ($request->has('search')) {
+            $types = Type::where('name', 'LIKE', '%' . $request->search . '%')
+                ->orderby('name', 'ASC')
+                ->paginate(12);
+        } else {
+            $types = Type::orderby('name', 'ASC')->paginate(12);
+        }
 
         return view("pages.dashboard.type", [
             "types" => $types

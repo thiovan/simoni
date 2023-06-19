@@ -9,9 +9,15 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::orderby('name', 'ASC')->paginate(12);
+        if ($request->has('search')) {
+            $categories = Category::where('name', 'LIKE', '%' . $request->search . '%')
+                ->orderby('name', 'ASC')
+                ->paginate(12);
+        } else {
+            $categories = Category::orderby('name', 'ASC')->paginate(12);
+        }
 
         return view("pages.dashboard.category", [
             "categories" => $categories
