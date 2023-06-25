@@ -50,10 +50,10 @@
 
         {{-- Sort and Filter Panel --}}
         <section x-data="{ openFilter: false }"
-            class="grid items-center mt-4 mb-2 bg-white border-t border-b border-gray-200 rounded-xl">
+            class="grid items-center mt-4 mb-2 bg-red-100 rounded-xl">
             <h2 id="filter-heading" class="sr-only">Filters</h2>
             <div class="relative col-start-1 row-start-1 py-4">
-                <div class="flex px-4 mx-auto space-x-6 text-sm divide-x divide-gray-200 sm:px-6 lg:px-8">
+                <div class="flex px-4 mx-auto space-x-6 text-sm divide-x divide-red-400 sm:px-6 lg:px-8">
                     <div>
                         <button @click="openFilter = !openFilter" type="button"
                             class="flex items-center font-medium text-red-700 group" aria-controls="disclosure-1"
@@ -64,7 +64,7 @@
                     </div>
                     <div class="pl-6">
                         <a href="/report">
-                            <button type="button" class="text-gray-500">Reset filter</button>
+                            <button type="button" class="text-red-700">Reset filter</button>
                         </a>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-<div class="sticky top-0 z-10 flex flex-shrink-0 h-16 bg-sidebar">
+<div class="sticky top-0 z-10 flex flex-shrink-0 {{ Route::currentRouteName() == 'dashboard' ? 'h-20' : 'h-16' }} bg-sidebar">
     <button type="button"
         class="px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
         @click="open = true">
@@ -10,7 +10,8 @@
         </svg>
     </button>
     <div class="flex justify-between flex-1 px-4 md:px-8">
-        <div class="flex flex-1">
+        <div class="flex justify-center flex-1">
+            <img class="{{ Route::currentRouteName() == 'dashboard' ? '' : 'hidden' }} h-full py-2" src="{{ asset('images/logo-simadu-text.webp') }}">
             <form class="{{ Route::currentRouteName() == 'dashboard' ? 'hidden' : '' }} flex items-center justify-center w-full my-2 md:ml-0" action="{{ Route::currentRouteName() }}" method="GET">
                 <label for="search-field" class="sr-only">Pencarian</label>
                 <div class="relative w-full text-gray-400 focus-within:text-gray-600">
