@@ -48,7 +48,153 @@
             </div>
         @endif
 
-        <div class="w-full p-4 mt-4 bg-gray-400 bg-opacity-50 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm">
+        {{-- Sort and Filter Panel --}}
+        <section x-data="{ openFilter: false }"
+            class="grid items-center mt-4 mb-2 bg-white border-t border-b border-gray-200 rounded-xl">
+            <h2 id="filter-heading" class="sr-only">Filters</h2>
+            <div class="relative col-start-1 row-start-1 py-4">
+                <div class="flex px-4 mx-auto space-x-6 text-sm divide-x divide-gray-200 sm:px-6 lg:px-8">
+                    <div>
+                        <button @click="openFilter = !openFilter" type="button"
+                            class="flex items-center font-medium text-red-700 group" aria-controls="disclosure-1"
+                            aria-expanded="false">
+                            <i class="flex-none w-5 h-5 mr-2 text-red-400 group-hover:text-red-500 fa-solid fa-filter"></i>
+                            Filters
+                        </button>
+                    </div>
+                    <div class="pl-6">
+                        <a href="/report">
+                            <button type="button" class="text-gray-500">Reset filter</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div x-show="openFilter" class="pt-4 border-t border-gray-200">
+                <form method="GET">
+                    <div class="grid grid-cols-2 px-4 mx-auto text-sm gap-x-4 sm:px-6 md:gap-x-6 lg:px-8">
+                        <div class="grid grid-cols-1 auto-rows-min gap-y-10 md:grid-cols-2 md:gap-x-6">
+                            <fieldset>
+                                <legend class="block font-medium">Sumber Sosmed</legend>
+                                <div class="pt-4 space-y-4 sm:space-y-2 sm:pt-4">
+
+                                    @foreach ($accounts as $account)
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input name="sosmed[]" value="{{ $account->uuid }}" type="checkbox"
+                                                class="flex-shrink-0 w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                                                {{ Request::has('sosmed') ? (in_array($account->uuid, Request::get('sosmed')) ? 'checked' : '') : 'checked' }}>
+                                            <label class="flex-1 min-w-0 ml-3 text-gray-600">
+                                                {{ ucfirst($account->sosmed) . ' (' . $account->username . ')' }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend class="block font-medium">Jenis Laporan</legend>
+                                <div class="pt-4 space-y-4 sm:space-y-2 sm:pt-4">
+
+                                    <div class="flex items-center text-base sm:text-sm">
+                                        <input id="color-0" name="type[]" value="null" type="checkbox"
+                                            class="flex-shrink-0 w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                                            {{ Request::has('type') ? (in_array('null', Request::get('type')) ? 'checked' : '') : 'checked' }}>
+                                        <label for="color-0" class="flex-1 min-w-0 ml-3 text-gray-600">Belum
+                                            Ditentukan</label>
+                                    </div>
+
+                                    @foreach ($types as $type)
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input name="type[]" value="{{ $type->uuid }}" type="checkbox"
+                                                class="flex-shrink-0 w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                                                {{ Request::has('type') ? (in_array($type->uuid, Request::get('type')) ? 'checked' : '') : 'checked' }}>
+                                            <label class="flex-1 min-w-0 ml-3 text-gray-600">
+                                                {{ ucwords($type->name) }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="grid grid-cols-1 auto-rows-min gap-y-10 md:gap-x-6">
+                            <fieldset>
+                                <legend class="block font-medium">Kategori Laporan</legend>
+                                <div class="pt-4 space-y-4 sm:space-y-2 sm:pt-4">
+
+                                    <div class="flex items-center text-base sm:text-sm">
+                                        <input id="color-0" name="category[]" value="null" type="checkbox"
+                                            class="flex-shrink-0 w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                                            {{ Request::has('category') ? (in_array('null', Request::get('category')) ? 'checked' : '') : 'checked' }}>
+                                        <label for="color-0" class="flex-1 min-w-0 ml-3 text-gray-600">Belum
+                                            Ditentukan</label>
+                                    </div>
+
+                                    @foreach ($categories as $category)
+                                        <div class="flex items-center text-base sm:text-sm">
+                                            <input name="category[]" value="{{ $category->uuid }}" type="checkbox"
+                                                class="flex-shrink-0 w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                                                {{ Request::has('category') ? (in_array($category->uuid, Request::get('category')) ? 'checked' : '') : 'checked' }}>
+                                            <label class="flex-1 min-w-0 ml-3 text-gray-600">
+                                                {{ ucwords($category->name) }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="flex justify-center gap-4 px-4 mt-8">
+                        <button type="submit"
+                            class="inline-flex items-center justify-center w-8/12 px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-full shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                            Terapkan Filter
+                        </button>
+                        <button type="button"
+                        onclick="document.querySelectorAll('input[type=checkbox]').forEach(i => i.checked = false);"
+                            class="inline-flex items-center justify-center w-4/12 px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-full shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                            Hapus Filter
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-start-1 row-start-1 py-4">
+                <div class="flex justify-end px-4 mx-auto sm:px-6 lg:px-8">
+                    <div x-data="{ openSort: false }" @click.away="openSort = false" class="relative inline-block">
+                        <div class="flex">
+                            <button @click="openSort = !openSort" type="button"
+                                class="inline-flex justify-center text-sm font-medium text-red-700 group hover:text-red-900"
+                                id="menu-button" aria-expanded="false" aria-haspopup="true">
+                                Urutkan
+                                <i
+                                    class="flex-shrink-0 w-4 h-4 ml-1 -mr-1 text-red-400 group-hover:text-red-500 fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+
+                        <div x-show="openSort" x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="transform opacity-0 scale-95"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-75"
+                            x-transition:leave-start="transform opacity-100 scale-100"
+                            x-transition:leave-end="transform opacity-0 scale-95"
+                            class="absolute right-0 z-10 w-40 mt-2 origin-top-right bg-white rounded-md shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                            <div class="py-1" role="none">
+                                <a href="{{ Request::getRequestUri() }}{{ count(Request::all()) == 0 ? '?' : '&' }}sort=datetime:desc"
+                                    class="block px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100"
+                                    role="menuitem" tabindex="-1" id="mobile-menu-item-0">Komentar (Terbaru)</a>
+
+                                <a href="{{ Request::getRequestUri() }}{{ count(Request::all()) == 0 ? '?' : '&' }}sort=datetime:asc"
+                                    class="block px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100"
+                                    role="menuitem" tabindex="-1" id="mobile-menu-item-1">Komentar (Terlama)</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{-- Content --}}
+        <div class="w-full p-4 bg-gray-400 bg-opacity-50 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm">
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
                 @php($delay = 0)
                 @foreach ($comments as $comment)
@@ -107,7 +253,8 @@
                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
                     x-transition:leave="ease-in duration-200"
                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" @click.away="open = false"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    @click.away="open = false"
                     class="relative w-full max-w-lg px-4 pt-5 pb-4 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:p-6">
 
                     <div class="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Type;
@@ -11,25 +12,47 @@ class ReportController extends Controller
 {
     public function index(Request $request)
     {
+        $comments = Comment::with(["account", "type", "category", "keyword_match", "keyword_match.keyword"]);
+
         if ($request->has('search')) {
-            $comments = Comment::with(["account", "type", "category", "keyword_match", "keyword_match.keyword"])
-                ->where('text', 'LIKE', '%' . $request->search . '%')
-                ->orWhere('sender', 'LIKE', '%' . $request->search . '%')
-                ->orderBy('datetime', 'DESC')
-                ->paginate(8);
-        } else {
-            $comments = Comment::with(["account", "type", "category", "keyword_match", "keyword_match.keyword"])
-                ->orderBy('datetime', 'DESC')
-                ->paginate(8);
+            $comments = $comments->where('text', 'LIKE', '%' . $request->search . '%')
+                ->orWhere('sender', 'LIKE', '%' . $request->search . '%');
         }
 
-        $categories = Category::get();
-        $types = Type::get();
+        if ($request->has('sosmed')) {
+            $comments = $comments->whereHas('account', function ($q) use ($request) {
+                $q->whereIn('uuid', $request->sosmed);
+            });
+        }
+
+        if ($request->has('type')) {
+            $comments = $comments->whereHas('type', function ($q) use ($request) {
+                $q->whereIn('uuid', $request->type);
+            });
+        }
+
+        if ($request->has('category')) {
+            $comments = $comments->whereHas('category', function ($q) use ($request) {
+                $q->whereIn('uuid', $request->category);
+            });
+        }
+
+        if ($request->has('sort')) {
+            $comments = $comments->orderBy(explode(":", $request->sort)[0], explode(":", $request->sort)[1]);
+        } else {
+            $comments = $comments->orderBy('datetime', 'DESC');
+        }
+
+        $comments = $comments->paginate(8);
+        $categories = Category::orderby("name", "ASC")->get();
+        $types = Type::orderby("name", "ASC")->get();
+        $accounts = Account::orderby("sosmed", "ASC")->get();
 
         return view("pages.dashboard.report", [
             "comments"      => $comments,
             "categories"    => $categories,
             "types"         => $types,
+            "accounts"      => $accounts
         ]);
     }
 
