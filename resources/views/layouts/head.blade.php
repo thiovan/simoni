@@ -6,6 +6,5 @@
 
 <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
 
-<link rel="stylesheet" href="{{ asset('css/app.css') }}?ver={{ filemtime(public_path('css/app.css')) }}">
-
-<script src="{{ asset('js/app.js') }}?ver={{ filemtime(public_path('js/app.js')) }}"></script>
+<link rel="stylesheet" href="{{ mix('css/app.css') }}" type="text/css">
+<script src="{{ mix('js/app.js') }}"></script>

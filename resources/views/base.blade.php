@@ -4,17 +4,17 @@
     @include('layouts.head')
 </head>
 
-<body class="h-full">
+<body>
 
     {{-- <header class="row">
         @include('layouts.header')
     </header> --}}
 
-    <div id="main" class="min-h-screen row">
+    <div id="main" class="container-fluid p-0">
         @yield('content')
     </div>
 
-    <footer class="row">
+    <footer>
         @include('layouts.footer')
     </footer>
 
