@@ -10,7 +10,7 @@
                 @include('layouts.navigation')
 
                 <main class="flex-1 bg-no-repeat bg-cover bg-default">
-                    <div class="py-6">
+                    <div class="py-4">
                         <div class="px-4 sm:px-6 md:px-8">
                             @yield('dashboard.content')
                         </div>

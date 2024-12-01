@@ -9,3 +9,27 @@
 .h-1\.5 {
   height: 1.5rem;
 }
+
+.bg-panel {
+  background-image: url(/images/bg-panel.webp);
+}
+
+.w-2 {
+  width: 2rem;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
+}
+
+.bg-center {
+  background-position: 50%;
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-panel-chart {
+  background-color: rgb(7, 7, 38);
+}
