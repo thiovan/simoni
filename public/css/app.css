@@ -11968,3 +11968,11 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+@media (min-width: 768px) {
+  .ps-md-16 {
+    padding-left: 16rem;
+  }
+}
+.h-1\.5 {
+  height: 1.5rem;
+}

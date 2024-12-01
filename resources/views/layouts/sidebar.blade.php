@@ -87,12 +87,12 @@
 </div>
 
 <!-- Static sidebar for desktop -->
-<div class="d-none d-md-flex position-fixed start-0 top-0 bottom-0 w-25">
+<div class="d-none d-md-flex position-fixed start-0 top-0 bottom-0" style="width: 16rem;">
     <!-- Sidebar component, swap this element with another sidebar if you like -->
     <div class="d-flex flex-column align-items-center flex-grow-1 pt-5 bg-danger bg-gradient">
         <div class="d-flex flex-column align-items-center px-4">
             <img class="img-fluid w-25" src="{{ asset('images/pemkot.png') }}" alt="logo pemkot semarang">
-            <div class="mt-2 fs-5 text-center text-white">
+            <div class="mt-2 fs-5 text-center text-white fw-bold">
                 PEMERINTAH KOTA<br>SEMARANG
             </div>
         </div>

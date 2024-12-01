@@ -5,7 +5,7 @@
 
         @include('layouts.sidebar')
 
-        <div class="md:pl-64">
+        <div class="ps-md-16">
             <div class="flex flex-col h-full mx-auto">
                 @include('layouts.navigation')
 
