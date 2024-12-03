@@ -12000,3 +12000,11 @@ textarea.form-control-lg {
 .bg-panel-chart {
   background-color: rgb(7, 7, 38);
 }
+
+.bg-default {
+  background-image: url(/images/bg-default.webp);
+}
+
+.bg-panel-type {
+  background-color: rgb(217, 17, 17);
+}
