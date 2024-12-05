@@ -49,23 +49,61 @@
         @endif
 
         {{-- Sort and Filter Panel --}}
-        <section x-data="{ openFilter: false }" class="container mt-4 mb-2 bg-danger-subtle rounded-3">
+        <section x-data="{ openFilter: false }" class="mt-4 mb-2 bg-danger-subtle rounded-3">
             <h2 id="filter-heading" class="sr-only">Filters</h2>
-            <div class="position-relative py-4">
-                <div class="d-flex px-4 mx-auto text-sm border-end border-danger-subtle sm:px-6 lg:px-8">
-                    <div>
-                        <button @click="openFilter = !openFilter" type="button"
-                            class="d-flex align-items-center fw-medium text-danger group" aria-controls="disclosure-1"
-                            aria-expanded="false">
-                            <i
-                                class="flex-none w-5 h-5 me-2 text-danger group-hover:text-danger-darker fa-solid fa-filter"></i>
-                            Filters
-                        </button>
+
+            <div class="d-flex">
+                <div class="flex-fill py-3">
+                    <div class="d-flex px-4 mx-auto text-sm sm:px-6 lg:px-8">
+                        <div>
+                            <button @click="openFilter = !openFilter" type="button"
+                                class="btn d-flex align-items-center fw-medium text-danger group" aria-controls="disclosure-1"
+                                aria-expanded="false">
+                                <i
+                                    class="flex-none w-5 h-5 me-2 text-danger group-hover:text-danger-darker fa-solid fa-filter"></i>
+                                Filters
+                            </button>
+                        </div>
+                        <div class="ps-6">
+                            <a href="/report">
+                                <button type="button" class="btn text-danger">Reset filter</button>
+                            </a>
+                        </div>
                     </div>
-                    <div class="ps-6">
-                        <a href="/report">
-                            <button type="button" class="text-danger">Reset filter</button>
-                        </a>
+                </div>
+
+                <div class="py-3">
+                    <div class="d-flex justify-content-end px-4 mx-auto sm:px-6 lg:px-8">
+                        <div x-data="{ openSort: false }" @click.away="openSort = false" class="position-relative inline-block">
+                            <div class="d-flex">
+                                <button @click="openSort = !openSort" type="button"
+                                    class="btn d-inline-flex justify-content-center text-sm fw-medium text-danger group hover:text-danger-darker"
+                                    id="menu-button" aria-expanded="false" aria-haspopup="true">
+                                    Urutkan
+                                    <i
+                                        class="flex-shrink-0 w-4 h-4 ms-1 -me-1 text-danger group-hover:text-danger-darker fa-solid fa-chevron-down"></i>
+                                </button>
+                            </div>
+    
+                            <div x-show="openSort" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="position-absolute end-0 z-10 w-40 mt-2 origin-top-right bg-white rounded-3 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                <div class="py-1" role="none">
+                                    <a href="{{ Request::getRequestUri() }}{{ count(Request::all()) == 0 ? '?' : '&' }}sort=datetime:desc"
+                                        class="d-block px-4 py-2 text-sm fw-medium text-gray-900 hover:bg-gray-100"
+                                        role="menuitem" tabindex="-1" id="mobile-menu-item-0">Komentar (Terbaru)</a>
+    
+                                    <a href="{{ Request::getRequestUri() }}{{ count(Request::all()) == 0 ? '?' : '&' }}sort=datetime:asc"
+                                        class="d-block px-4 py-2 text-sm fw-medium text-gray-900 hover:bg-gray-100"
+                                        role="menuitem" tabindex="-1" id="mobile-menu-item-1">Komentar (Terlama)</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,41 +190,7 @@
                     </div>
                 </form>
             </div>
-
-            <div class="py-4">
-                <div class="d-flex justify-content-end px-4 mx-auto sm:px-6 lg:px-8">
-                    <div x-data="{ openSort: false }" @click.away="openSort = false" class="position-relative inline-block">
-                        <div class="d-flex">
-                            <button @click="openSort = !openSort" type="button"
-                                class="d-inline-flex justify-content-center text-sm fw-medium text-danger group hover:text-danger-darker"
-                                id="menu-button" aria-expanded="false" aria-haspopup="true">
-                                Urutkan
-                                <i
-                                    class="flex-shrink-0 w-4 h-4 ms-1 -me-1 text-danger group-hover:text-danger-darker fa-solid fa-chevron-down"></i>
-                            </button>
-                        </div>
-
-                        <div x-show="openSort" x-transition:enter="transition ease-out duration-100"
-                            x-transition:enter-start="transform opacity-0 scale-95"
-                            x-transition:enter-end="transform opacity-100 scale-100"
-                            x-transition:leave="transition ease-in duration-75"
-                            x-transition:leave-start="transform opacity-100 scale-100"
-                            x-transition:leave-end="transform opacity-0 scale-95"
-                            class="position-absolute end-0 z-10 w-40 mt-2 origin-top-right bg-white rounded-3 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
-                            role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-                            <div class="py-1" role="none">
-                                <a href="{{ Request::getRequestUri() }}{{ count(Request::all()) == 0 ? '?' : '&' }}sort=datetime:desc"
-                                    class="d-block px-4 py-2 text-sm fw-medium text-gray-900 hover:bg-gray-100"
-                                    role="menuitem" tabindex="-1" id="mobile-menu-item-0">Komentar (Terbaru)</a>
-
-                                <a href="{{ Request::getRequestUri() }}{{ count(Request::all()) == 0 ? '?' : '&' }}sort=datetime:asc"
-                                    class="d-block px-4 py-2 text-sm fw-medium text-gray-900 hover:bg-gray-100"
-                                    role="menuitem" tabindex="-1" id="mobile-menu-item-1">Komentar (Terlama)</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </section>
 
         {{-- Sort and Filter Panel --}}
